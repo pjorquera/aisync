@@ -10,8 +10,8 @@
     "admin_interface": ":4985",
     "metrics_interface": ":4986",
     "cors": {
-      "origin": [ "http://localhost:8080", "http://localhost:4200" ],
-      "login_origin": [ "http://localhost:8080", "http://localhost:4200" ],
+      "origin": [ "http://localhost:4200" ],
+      "login_origin": [ "http://localhost:4200" ],
       "headers": [ "Content-Type" ]
    }
   },
