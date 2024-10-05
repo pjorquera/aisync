@@ -2,11 +2,9 @@
 
 /entrypoint.sh couchbase-server & 
 
-echo $COUCHBASE_ADMINISTRATOR_USERNAME ":"  $COUCHBASE_ADMINISTRATOR_PASSWORD  
-
 sleep 10s
 
-/opt/couchbase/bin/couchbase-cli cluster-init -c 127.0.0.1 \
+/opt/couchbase/bin/couchbase-cli cluster-init -c localhost \
 --cluster-username $COUCHBASE_ADMINISTRATOR_USERNAME \
 --cluster-password $COUCHBASE_ADMINISTRATOR_PASSWORD \
 --services data,index,query \
@@ -32,7 +30,7 @@ sleep 2s
 # https://docs.couchbase.com/server/current/cli/cbcli/couchbase-cli-user-manage.html#examples
 
 /opt/couchbase/bin/couchbase-cli user-manage \
---cluster http://127.0.0.1 \
+--cluster http://localhost \
 --username $COUCHBASE_ADMINISTRATOR_USERNAME \
 --password $COUCHBASE_ADMINISTRATOR_PASSWORD \
 --set \
