@@ -4,6 +4,6 @@ AI Sync Demo App
 ## Starting
 
 ```
-cd db
+cd back
 docker compose up
 ```
