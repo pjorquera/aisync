@@ -4,7 +4,8 @@
 
 echo $COUCHBASE_ADMINISTRATOR_USERNAME ":"  $COUCHBASE_ADMINISTRATOR_PASSWORD  
 
-sleep 10s 
+sleep 10s
+
 /opt/couchbase/bin/couchbase-cli cluster-init -c 127.0.0.1 \
 --cluster-username $COUCHBASE_ADMINISTRATOR_USERNAME \
 --cluster-password $COUCHBASE_ADMINISTRATOR_PASSWORD \
@@ -13,7 +14,7 @@ sleep 10s
 --cluster-index-ramsize $COUCHBASE_INDEX_RAM_SIZE \
 --index-storage-setting default
 
-sleep 2s 
+sleep 2s
 
 # used to auto create the bucket based on environment variables
 # https://docs.couchbase.com/server/current/cli/cbcli/couchbase-cli-bucket-create.html
@@ -25,7 +26,7 @@ sleep 2s
 --bucket-ramsize $COUCHBASE_BUCKET_RAMSIZE \
 --bucket-type couchbase 
 
-sleep 2s 
+sleep 2s
 
 # used to auto create the sync gateway user based on environment variables  
 # https://docs.couchbase.com/server/current/cli/cbcli/couchbase-cli-user-manage.html#examples
@@ -40,35 +41,7 @@ sleep 2s
 --roles mobile_sync_gateway[*] \
 --auth-domain local
 
-sleep 2s 
-
-# create indexes using the QUERY REST API  
-/opt/couchbase/bin/curl -v http://localhost:8093/query/service \
--u $COUCHBASE_ADMINISTRATOR_USERNAME:$COUCHBASE_ADMINISTRATOR_PASSWORD \
--d 'statement=CREATE INDEX idx_projects_team on projects(team)'
-    
 sleep 2s
-
-/opt/couchbase/bin/curl -v http://localhost:8093/query/service \
--u $COUCHBASE_ADMINISTRATOR_USERNAME:$COUCHBASE_ADMINISTRATOR_PASSWORD \
--d 'statement=CREATE INDEX idx_projects_type on projects(type)'
-    
-sleep 2s
-
-/opt/couchbase/bin/curl -v http://localhost:8093/query/service \
--u $COUCHBASE_ADMINISTRATOR_USERNAME:$COUCHBASE_ADMINISTRATOR_PASSWORD \
--d 'statement=CREATE INDEX idx_projects_projectId on projects(projectId)'
-
-sleep 2s
-
-# import sample data into the bucket
-# https://docs.couchbase.com/server/current/tools/cbimport-json.html
-
-/opt/couchbase/bin/cbimport json --format list \
--c http://localhost:8091 \
--u $COUCHBASE_ADMINISTRATOR_USERNAME \
--p $COUCHBASE_ADMINISTRATOR_PASSWORD \
--d "file:///opt/couchbase/init/sample-data.json" -b 'projects' -g %projectId%
 
 # docker compose will stop the container from running unless we do this
 # known issue and workaround

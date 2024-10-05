@@ -1,0 +1,38 @@
+{
+	"disable_persistent_config": true,
+	"use_tls_server": false,
+	"databases": {
+		"couchbase": {
+			"server": "couchbase://couchbase",
+			"bucket": "aisync",
+			"username": "admin",
+			"password": "zxc123",
+			"num_index_replicas": 0,
+			"enable_shared_bucket_access": true,
+			"import_docs": true,
+			"use_views": true,
+			"users": {
+				"GUEST": {
+					"disabled": false,
+					"admin_channels": [
+						"*"
+					]
+				}
+			}
+		}
+	},
+	"CORS": {
+    "Origin": [ "http://localhost:8080", "http://localhost:4200" ],
+    "LoginOrigin": [ "http://localhost:8080", "http://localhost:4200" ],
+    "Headers": [ "Content-Type" ]
+	},
+	"logging": {
+		"console": {
+			"enabled": true,
+			"log_level": "info",
+			"log_keys": [
+				"HTTP"
+			]
+		}
+	}
+}

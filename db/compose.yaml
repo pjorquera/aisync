@@ -21,7 +21,7 @@ services:
       - COUCHBASE_RAM_SIZE=2048
       - COUCHBASE_INDEX_RAM_SIZE=512
     volumes:
-      - './init:/opt/couchbase/init'
+      - './init.sh:/opt/couchbase/init/init.sh'
     entrypoint: [ '' ]
     command: sh -c "/opt/couchbase/init/init.sh"
 
@@ -32,5 +32,5 @@ services:
     ports:
       - 4984-4986:4984-4986
     volumes:
-      - './sync-gateway/sync-gateway.json:/etc/sync_gateway/config.json'
+      - './config.json:/etc/sync_gateway/config.json'
 
