@@ -1,7 +1,7 @@
 {
   "bootstrap": {
-    "server": "couchbases://couchbase",
-    "server_tls_skip_verify": true,
+    "server": "couchbase://couchbase",
+    "use_tls_server": false,
     "username": "admin",
     "password": "zxc123"
   },
@@ -12,7 +12,7 @@
     "cors": {
       "origin": [ "http://localhost:4200" ],
       "login_origin": [ "http://localhost:4200" ],
-      "headers": [ "Content-Type" ]
+      "headers": [ "Origin", "Content-Type", "Accept", "Authorization" ]
    }
   },
   "logging": {
